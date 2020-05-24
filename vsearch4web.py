@@ -9,7 +9,7 @@ def hello() -> str:
     return 'HELLO WORLD'
 
 
-@app.route('/search4')
+@app.route('/search4', methods=['POST', 'GET'])
 def do_search() -> str:
     return str(search4letters('life', 'eiru!'))
 
@@ -19,4 +19,4 @@ def entry_page() -> 'html':
     return render_template('entry.html', the_title='Welcome to search4letter on the web')
 
 
-app.run()
+app.run(debug=True)
