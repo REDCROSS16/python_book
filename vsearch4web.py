@@ -1,7 +1,22 @@
 from flask import Flask, render_template, request, escape
 from vsearch import search4letters
+import mysql.connector
 
 app = Flask(__name__)
+
+
+dbconfig = {
+    'host': '127.0.0.1',
+    'user': 'vsearch',
+    'password': 'pass',
+    'database': 'vsearchlogDB',
+}
+# подключение драйвера для баз данных
+conn = mysql.connector.connect(**dbconfig)
+# подключение курсора- штуки для передачи команд в базу данных
+cursor = conn.cursor()
+_SQL = ''' show tables'''
+cursor.execute(_SQL)
 
 
 def log_request(req: 'flask_request', res: str) -> None:
