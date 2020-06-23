@@ -15,8 +15,17 @@ dbconfig = {
 conn = mysql.connector.connect(**dbconfig)
 # подключение курсора- штуки для передачи команд в базу данных
 cursor = conn.cursor()
-_SQL = ''' show tables'''
+_SQL = ''' describe log'''
 cursor.execute(_SQL)
+
+# cfo = cursor.fetchone()
+# cfm = cursor.fetchmany()
+res = cursor.fetchall()
+# print(cfo)
+# print(cfm)
+print(res)
+for row in res:
+    print(row)
 
 
 def log_request(req: 'flask_request', res: str) -> None:
